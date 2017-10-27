@@ -1,0 +1,12 @@
+@import "../../main.css";
+
+:local .short_text {
+    position: relative;
+    min-width: 200px;
+    display: inline-block;
+    padding: 8px 24px;
+    overflow: hidden;
+    outline: none;
+    border: 1px solid var(--border-color);
+    font-family: monospace;
+}

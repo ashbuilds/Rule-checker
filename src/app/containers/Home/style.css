@@ -1,0 +1,6 @@
+@import "../main.css";
+
+:local .home .add_flow{
+    margin: 18px 0;
+    display: inline;
+}

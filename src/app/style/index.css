@@ -1,0 +1,18 @@
+@import "normalize.css";
+@import "grid.css";
+@import "constant.css";
+#root{
+  height: 100%;
+}
+:local .wrapper{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 60rem;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+:local .main{
+  flex: 1;
+}

@@ -1,0 +1,51 @@
+@import "../../main.css";
+
+:local .button {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    padding: 0;
+    overflow: hidden;
+    outline: none;
+    border-width:0;
+    background-color: var(--button-normal);
+    color: #ecf0f1;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+:local .button:hover {
+    opacity: 0.8;
+}
+
+:local .button > * {
+    position: relative;
+}
+
+:local .button span {
+    display: block;
+    padding: 8px 24px;
+}
+
+:local .button:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    padding-top: 0;
+    border-radius: 100%;
+    background-color: rgba(236, 240, 241, .3);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+:local .button:active:before {
+    width: 120%;
+    padding-top: 120%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}

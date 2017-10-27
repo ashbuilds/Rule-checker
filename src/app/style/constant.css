@@ -1,0 +1,14 @@
+:root {
+    --button-normal: #d63b6d;
+    --button-add: #5751fa;
+    --border-color: #eaeaea;
+    --card-shadow: 0 4px 28px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box{
+    padding: 22px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+

@@ -1,0 +1,27 @@
+@import "../main.css";
+:local .flow {
+    padding-top: 40px;
+}
+
+/* Add new rule */
+:local .flow>.rule_block{
+ margin: 22px 0;
+}
+
+:local .flow>.rule_block .rule_input{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+:local .flow>.rule_block .long_input {
+    height: 130px;
+}
+:local .flow>.rule_block .add_rule{
+    text-align: right;
+}
+:local .flow>.rule_block .add_rule_button{
+    display: inline;
+    margin: auto;
+    background: var(--button-add);
+}
+
