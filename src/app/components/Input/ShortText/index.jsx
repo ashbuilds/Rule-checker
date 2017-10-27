@@ -9,10 +9,12 @@ const ShortText = props => (
 
 ShortText.propTypes = {
   className: PropTypes.string,
+  value: PropTypes.string,
 };
 
 ShortText.defaultProps = {
   className: '',
+  value:'',
 };
 
 export default ShortText;

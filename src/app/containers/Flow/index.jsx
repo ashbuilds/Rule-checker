@@ -15,9 +15,16 @@ class Flow extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.id = this.props.match.params.id;
+    this.currentFlow = this.props.flow[this.id-1] || {};
+    this.state = {
+      createNewFlow: this.currentFlow.name,
+    };
+
   }
   handleChange(event) {
-    this.props.createNewFlow(event.target.value);
+      this.setState({
+        [event.target.name]:event.target.value,
+      })
   }
 
   render() {
@@ -26,10 +33,15 @@ class Flow extends Component {
         <h3>Create flow</h3>
         <ShortText
           placeholder="Enter flow name"
-          onBlur={event => this.props.createNewFlow({
-            id: this.id,
-            name: event.target.value,
-          })}
+          name="createNewFlow"
+          value={this.state.createNewFlow}
+          onChange={event => {
+            this.handleChange(event);
+            this.props.createNewFlow({
+              id: this.id,
+              name: event.target.value,
+            })
+          }}
         />
         <div className={['box', style.rule_block].join(' ')} >
           <div className="row">
@@ -37,7 +49,13 @@ class Flow extends Component {
               <span>Rule title</span>
             </div>
             <div className="col-6">
-              <ShortText className={style.rule_input} placeholder="Rule 1" />
+              <ShortText
+                  className={style.rule_input}
+                  placeholder="Rule 1"
+                  name="ruleTitle"
+                  value={this.state.ruleTitle}
+                  onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="row">
@@ -45,7 +63,13 @@ class Flow extends Component {
               <span>Rule id</span>
             </div>
             <div className="col-6">
-              <ShortText className={style.rule_input} placeholder="1" />
+              <ShortText
+                  className={style.rule_input}
+                  placeholder="1"
+                  name="ruleId"
+                  value={this.state.ruleId}
+                  onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="row">
@@ -56,6 +80,9 @@ class Flow extends Component {
               <LongText
                 className={[style.rule_input, style.long_input].join(' ')}
                 placeholder="//example of rule body&#x0a;function(){&#x0a;return bool&#x0a;}"
+                name="ruleBody"
+                value={this.state.ruleBody}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -64,7 +91,13 @@ class Flow extends Component {
               <span>If rule passed</span>
             </div>
             <div className="col-6">
-              <LongText className={style.rule_input} placeholder="//next rule id &#x0a;4" />
+              <LongText
+                  className={style.rule_input}
+                  placeholder="//next rule id &#x0a;4"
+                  name="nextRuleIdPass"
+                  value={this.state.nextRuleIdPass}
+                  onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="row">
@@ -72,7 +105,13 @@ class Flow extends Component {
               <span>If rule failed</span>
             </div>
             <div className="col-6">
-              <LongText className={style.rule_input} placeholder="//next rule id &#x0a;3" />
+              <LongText
+                  className={style.rule_input}
+                  placeholder="//next rule id &#x0a;3"
+                  name="nextRuleIdFail"
+                  value={this.state.nextRuleIdFail}
+                  onChange={this.handleChange}
+              />
             </div>
           </div>
           <div className="row">
@@ -88,6 +127,7 @@ class Flow extends Component {
 }
 
 Flow.propTypes = {
+  flow: PropTypes.arrayOf(PropTypes.object),
   createNewFlow: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -96,8 +136,13 @@ Flow.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (props, state) => ({
-  flow: state.data,
+Flow.defaultProps = {
+  flow: [],
+};
+
+
+const mapStateToProps = state => ({
+  flow: state.flow.data,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

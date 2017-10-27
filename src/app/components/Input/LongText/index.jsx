@@ -9,10 +9,12 @@ const LongText = props => (
 
 LongText.propTypes = {
   className: PropTypes.string,
+  value: PropTypes.string,
 };
 
 LongText.defaultProps = {
   className: '',
+  value:'',
 };
 
 export default LongText;
